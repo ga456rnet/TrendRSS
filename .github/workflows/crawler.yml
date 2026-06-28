@@ -54,6 +54,8 @@ jobs:
   crawl:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      NODE_VERSION: 24 
 
     steps:
       - name: Checkout repository
@@ -61,6 +63,11 @@ jobs:
         with:
           fetch-depth: 1
           clean: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}  
 
       - name: Check Expiration
         env:
